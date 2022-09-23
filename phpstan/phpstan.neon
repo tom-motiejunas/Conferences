@@ -1,0 +1,13 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    level: 7
+    paths:
+        - ../app
+    checkGenericClassInNonGenericObjectType: false
+    inferPrivatePropertyTypeFromConstructor: true
+    parallel:
+        processTimeout: 300.0
+#    ignoreErrors:
+#        - '#\$id is never written, only read#'
