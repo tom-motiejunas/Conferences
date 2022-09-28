@@ -1,9 +1,17 @@
-import React from 'react'
+import * as React from "react";
 import ReactDOM from 'react-dom'
-import App from './App'
+import { Admin, Resource } from 'react-admin';
+import AuthProvider from '../components/AuthProvider' ;
 
-const element = document.getElementById('root')
+import { ConferencesList, ConferencesEdit, ConferencesCreate, ConferenceIcon } from '../conferences/ConferencesList';
 
 ReactDOM.render(<React.StrictMode>
-    <App {...element?.dataset}  />
+    <Admin authProvider={AuthProvider}>
+        <Resource name="Conferences"
+                  list={ConferencesList}
+                  edit={ConferencesEdit}
+                  create={ConferencesCreate}
+                  icon={ConferenceIcon}
+                />
+    </Admin>
 </React.StrictMode>, document.getElementById('root'))

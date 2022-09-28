@@ -1,13 +1,18 @@
 includes:
-    - phpstan-baseline.neon
+    - ../vendor/nunomaduro/larastan/extension.neon
 
 parameters:
-    level: 7
+
     paths:
-        - ../app
-    checkGenericClassInNonGenericObjectType: false
-    inferPrivatePropertyTypeFromConstructor: true
-    parallel:
-        processTimeout: 300.0
+        - ../app/
+
+    # Level 9 is the highest level
+    level: 5
+
 #    ignoreErrors:
-#        - '#\$id is never written, only read#'
+#        - '#PHPDoc tag @var#'
+#
+#    excludePaths:
+#        - ./*/*/FileToBeExcluded.php
+#
+#    checkMissingIterableValueType: false
