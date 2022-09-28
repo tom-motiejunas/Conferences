@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
-class WelcomeController extends Controller
+class IndexController extends Controller
 {
-    public function index()
+    public function index(): Factory|View
     {
         return view('welcome', [
             'message' => "Hello, world!",
