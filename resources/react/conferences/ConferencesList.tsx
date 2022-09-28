@@ -1,9 +1,10 @@
 import * as React from "react";
 import { List, Datagrid, Edit, Create, SimpleForm, DateField, TextField, EditButton, TextInput, DateInput } from 'react-admin';
 import ForumIcon from '@mui/icons-material/Forum';
+import {ReactPropTypes} from "react";
 export const ConferenceIcon = ForumIcon;
 
-export const ConferencesList = (props) => (
+export const ConferencesList = (props: ReactPropTypes) => (
     <List {...props} disableAuthentication>
         <Datagrid>
             <TextField source="id" />
@@ -20,7 +21,7 @@ const ConferenceTitle = ({ record }) => {
     return <span>Post {record ? `"${record.title}"` : ''}</span>;
 };
 
-export const ConferencesEdit = (props) => (
+export const ConferencesEdit = (props: ReactPropTypes) => (
     <Edit title={<ConferenceTitle record={undefined} />} {...props}>
         <SimpleForm>
             <TextInput disabled source="id" />
@@ -34,7 +35,7 @@ export const ConferencesEdit = (props) => (
     </Edit>
 );
 
-export const ConferencesCreate = (props) => (
+export const ConferencesCreate = (props: ReactPropTypes) => (
     <Create title="Create a Post" {...props}>
         <SimpleForm>
             <TextInput source="title" />
