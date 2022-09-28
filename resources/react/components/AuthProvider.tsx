@@ -36,13 +36,15 @@ const authProvider: AuthProvider = {
 
         return Promise.resolve();
     },
-    getIdentity: () =>{
-    try {
-        const { id, fullName, avatar } = JSON.parse(localStorage.getItem('auth') || '');
-        return Promise.resolve({ id, fullName, avatar });
-    } catch (error) {
-        return Promise.reject(error);
-    }},
+    getIdentity: () => {
+        try {
+            const {user} = JSON.parse(localStorage.getItem('auth') || '');
+            const {id, username} = user;
+            return Promise.resolve({id, username});
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    },
     getPermissions: () => Promise.resolve(''),
 };
 
