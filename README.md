@@ -11,6 +11,10 @@
 - Clone the repository
 - Run `composer install`
 - Run `npm install`
-- Run ./start-dev.sh
-- Connect to php container by running this command ./backend.sh
-- Run ./phpstan/check-project.sh to check the code
+- Run `./backend.sh`
+  - `php artisan install`
+  - `php artisan migrate:refresh --seed`
+  - `php artisan passport:install`
+  - `php artisan passport:client --personal`
+- Run `./start-dev.sh`
+- Run `./phpstan/check-project.sh` to check the code
