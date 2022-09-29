@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Controllers\Auth\UserAuthController;
+use App\Http\Controllers\ConferenceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +19,10 @@ use Illuminate\Support\Facades\Route;
 */
 Route::post('/login', [UserAuthController::class, 'login']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::controller(ConferenceController::class)->group(function () {
+    Route::get('/conference', [ConferenceController::class, 'index']);
+    Route::get('/conference/{id}', [ConferenceController::class, 'show']);
+    Route::put('/conference/{id}', [ConferenceController::class, 'update'])->middleware('auth:api');
+    Route::delete('/conference/{id}', [ConferenceController::class, 'destroy'])->middleware('auth:api');
+    Route::post('/conference', [ConferenceController::class, 'store'])->middleware('auth:api');
 });
