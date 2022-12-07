@@ -1,19 +1,34 @@
 import * as React from "react";
 import ReactDOM from 'react-dom'
-import {Admin, Resource} from 'react-admin';
+import {Admin, fetchUtils, Options, Resource} from 'react-admin';
 import AuthProvider from '../components/AuthProvider' ;
-import {ConferencesList, ConferencesEdit, ConferencesCreate, ConferenceIcon} from '../conferences/ConferencesList';
+import {ConferencesList, ConferencesEdit, ConferencesCreate, ConferenceIcon, ConferencesShow} from '../conferences/ConferencesList';
 import UserLayout from "../components/UserLayout/UserLayout";
+import simpleRestProvider from 'ra-data-simple-rest';
 
+const httpClient = (url: string, options: Options = {}) => {
+    if (!options.headers) {
+        options.headers = new Headers({ Accept: 'application/json' });
+    }
+    const auth = localStorage.getItem('auth');
+    const token = auth ? JSON.parse(auth).token : '';
+
+    options.headers.set('Authorization', `Bearer ${token}`);
+    return fetchUtils.fetchJson(url, options);
+}
+
+const dataProvider = simpleRestProvider('http://localhost/api', httpClient);
 
 ReactDOM.render(<React.StrictMode>
     <Admin authProvider={AuthProvider}
            layout={UserLayout}
+           dataProvider={dataProvider}
     >
-        <Resource name="Conferences"
+        <Resource name="conference"
                   list={ConferencesList}
                   edit={ConferencesEdit}
                   create={ConferencesCreate}
+                  show={ConferencesShow}
                   icon={ConferenceIcon}
         />
     </Admin>

@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->string('link');
             $table->string('country');
             $table->string('city');
-            $table->dateTimeTz('date');
+            $table->dateTime('date');
             $table->timestamps();
         });
     }

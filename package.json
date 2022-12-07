@@ -19,6 +19,8 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
+        "ra-data-simple-rest": "^4.3.4",
+        "ra-input-rich-text": "^4.3.4",
         "react-admin": "^4.3.4"
     }
 }

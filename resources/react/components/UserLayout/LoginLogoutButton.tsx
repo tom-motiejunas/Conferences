@@ -4,6 +4,7 @@ import {useLogout, useRedirect} from 'react-admin';
 import MenuItem from '@mui/material/MenuItem';
 import LoginIcon from '@mui/icons-material/PowerSettingsNew';
 import LogoutIcon from '@mui/icons-material/ExitToApp';
+import checkAuth from "../../util/checkAuth";
 
 const MyLogoutButton = forwardRef((props, ref: ForwardedRef<any>) => {
     const redirect = useRedirect();
@@ -13,9 +14,7 @@ const MyLogoutButton = forwardRef((props, ref: ForwardedRef<any>) => {
     const handleLogout = () => logout();
 
     function renderLoginAndLogout() {
-        const user = localStorage.getItem('auth');
-
-        return user ? (
+        return checkAuth() ? (
             <MenuItem ref={ref} onClick={handleLogout}>
                 <LogoutIcon/>
                 Logout
@@ -32,7 +31,6 @@ const MyLogoutButton = forwardRef((props, ref: ForwardedRef<any>) => {
         <>
             {renderLoginAndLogout()}
         </>
-
     );
 });
 
