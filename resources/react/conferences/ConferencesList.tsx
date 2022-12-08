@@ -13,7 +13,7 @@ import {
     ShowButton,
     SimpleShowLayout,
     DateTimeInput,
-    Show, RichTextField
+    Show, RichTextField, useTranslate
 } from 'react-admin';
 import ForumIcon from '@mui/icons-material/Forum';
 import {ReactPropTypes} from "react";
@@ -48,12 +48,10 @@ export const ConferencesShow = (props: ReactPropTypes) => (
     </Show>
 );
 
-const ConferenceTitle = ({ record }) => {
-    return <span>Post {record ? `"${record.title}"` : ''}</span>;
-};
-
-export const ConferencesEdit = (props: ReactPropTypes) => (
-    <Edit title={<ConferenceTitle record={undefined} />} {...props}>
+export const ConferencesEdit = (props: ReactPropTypes) => {
+    const translate = useTranslate();
+    return (
+    <Edit title={translate('ra.conference.postTitle')} {...props}>
         <SimpleForm>
             <TextInput source="title" name="title"/>
             <RichTextInput source="description" name="description"/>
@@ -63,10 +61,12 @@ export const ConferencesEdit = (props: ReactPropTypes) => (
             <TextInput source="link" name="link"/>
         </SimpleForm>
     </Edit>
-);
+);}
 
-export const ConferencesCreate = (props: ReactPropTypes) => (
-    <Create title="Create a Conference" {...props}>
+export const ConferencesCreate = (props: ReactPropTypes) => {
+    const translate = useTranslate();
+    return (
+    <Create title={translate('ra.conference.createConference')} {...props}>
         <SimpleForm>
             <TextInput source="title" name="title" required={true}/>
             <RichTextInput source="description" name="description" isRequired={true}/>
@@ -76,4 +76,4 @@ export const ConferencesCreate = (props: ReactPropTypes) => (
             <TextInput source="link" name="link" required={true}/>
         </SimpleForm>
     </Create>
-);
+);}

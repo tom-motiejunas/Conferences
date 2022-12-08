@@ -5,8 +5,9 @@ import AuthProvider from '../components/AuthProvider' ;
 import {ConferencesList, ConferencesEdit, ConferencesCreate, ConferenceIcon, ConferencesShow} from '../conferences/ConferencesList';
 import UserLayout from "../components/UserLayout/UserLayout";
 import simpleRestProvider from 'ra-data-simple-rest';
+import i18nProvider from "../components/i18nProvider";
 
-const httpClient = (url: string, options: Options = {}) => {
+const httpClient = (url: string, options: any = {}) => {
     if (!options.headers) {
         options.headers = new Headers({ Accept: 'application/json' });
     }
@@ -23,7 +24,7 @@ ReactDOM.render(<React.StrictMode>
     <Admin authProvider={AuthProvider}
            layout={UserLayout}
            dataProvider={dataProvider}
-    >
+           i18nProvider={i18nProvider}>
         <Resource name="conference"
                   list={ConferencesList}
                   edit={ConferencesEdit}
