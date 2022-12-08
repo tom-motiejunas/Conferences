@@ -18,7 +18,7 @@ class ConferenceController extends Controller
 
         return response()->json(
             $conferences
-        )->header('Content-Range', count($conferences));
+        )->header('Content-Range', strval(count($conferences)));
     }
 
     public function show(string $id): JsonResponse
